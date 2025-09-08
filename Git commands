@@ -1,0 +1,8 @@
+git init - initiate a git repository.
+git add -a - adds everything from the repository.
+git commit -m "example message" - allows you to add a message to your commit.
+git push - pushes your commited changes to your repository.
+git commit --amend - allows you to modify your most recent commit messgae.
+git remote add origin https://github.com/example/example.git - adds and origin 
+git branch -M main - ?
+git push -u origin main - allows to push your files to the origin
