@@ -1,0 +1,46 @@
+<?php 
+
+$Tasks = array("exist ", "breathe ", "live ");
+$Commands = ["help - Shows the list of available commands", "n - End the interface session", "add - Adds a new value to the Tasks array","delete - gives you an option to delete a certain task", "1 - the frist value in the tasks array"];
+
+while(true) {
+    $UserInput = readline("Enter an input: ");
+    
+    if( $UserInput == "n" ) {
+        break;
+    }
+
+    switch($UserInput) {
+        case "all";
+            foreach($Tasks as $n) {
+                echo $n. "\n";
+            }
+            break;
+        case "one";
+            echo $Tasks[0]. "\n";
+            break;
+        case "two";
+            echo $Tasks[1]. "\n";
+            break;
+        case "three";
+            echo $Tasks[2]. "\n";
+            break;
+        case "help";
+            foreach($Commands as $n) {
+                    echo $n. "\n" . "\n";
+                }
+            break;
+        case "add";
+                $add = readline("Enter a new task: ");
+                array_push($Tasks, $add);
+                print_r($Tasks);
+            break;
+         case "delete";
+                $del = readline("Enter the id of the entry you want to delete: ");
+                unset($Tasks[$del]);
+}
+continue;
+} 
+
+?>
+
