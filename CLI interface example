@@ -1,10 +1,12 @@
 <?php 
 
-    $Help = ["Help - Shows a list of commands ", 
-             "n - end interface session ", 
+$Help = ["Help - Shows a list of commands ", 
+             "q - end interface session ", 
              "view - displays the Tasks", 
              "add - Allows you to add a new 'Task'", 
-             "delete - Allows you to delete a certain 'Task'"
+             "delete - Allows you to delete a certain 'Task'",
+             "game - number guessing game",
+             "cls - clears the screen"
         ];
    
     $Tasks = ["Undefined", "Recover" , "Port"];
@@ -32,6 +34,49 @@
         unset($Tasks[$delTask]);
     }
 
+    function numberGuessingGame() {
+        
+        $triesLeft = 10;
+
+        $userPoints = 0;
+
+        $randNumber = rand(1, 100);
+        echo $randNumber. "\n";
+
+
+        while ($triesLeft !== 0) {
+            $userInput = readline("Enter a number from 1 to 100: ");
+            switch ($userInput) {
+                case (int)$userInput;
+                    if ($userInput == $randNumber) {
+                            $userPoints += $triesLeft * 10;
+                            echo "You guessed it!! \n";
+                            echo "Points:". $userPoints ." \n";
+                            $triesLeft = 10;
+                            $randNumber = rand(1, 100);
+                            $end = readline("Do you want to continue yes/no? ");
+                                if ($end == "no") {
+                                    $triesLeft = 0;
+                                }
+                        } elseif ($userInput > $randNumber) {
+                            echo "Your guess is lesser than the random number \n";
+                            echo "Number of tries left: ". $triesLeft. "\n";
+                            $triesLeft -= 1;
+                        } elseif ($userInput < $randNumber) {
+                            echo "Your guess is greater than the random number \n";
+                            echo "Number of tries left: ". $triesLeft. "\n";
+                            $triesLeft -= 1;
+                        }
+                    break;
+                case "q";
+                    $triesLeft = 0;
+                break;
+            }
+               
+        }
+        
+    }
+
 while (1) {
 
     $UserInput = readline("D:\> ");
@@ -53,11 +98,16 @@ while (1) {
         case "delete";
             echo delete($Tasks);
         break;
-        case "n";
+        case "game";
+            echo numberGuessingGame();
+        break;
+        case "cls";
+            echo "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        break;
+        case "q";
             exit;
         break;
     }
 
 }
-
 ?>
