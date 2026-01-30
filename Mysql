@@ -2,3 +2,44 @@
 <> is the same as !=
 Full join is used to verify the datas integrety
 https://dev.mysql.com/doc/refman/8.4/en/sql-compound-statements.html
+
+ * Concurrency problems:
+
+* Lost Updates
+* Dirty Reads
+* Non-Repeating Reads
+* Phantom Reads
+
+ * Isolation levels and concurrency problems:
+(YES = problem may occur, NO = problem is prevented)
+
+| Isolation Level  | Lost Updates | Dirty Reads | Non-Repeating Reads | Phantom Reads |
+| ---------------- | ------------ | ----------- | ------------------- | ------------- |
+| READ UNCOMMITTED | YES          | YES         | YES                 | YES           |
+| READ COMMITTED   | YES          | NO          | YES                 | YES           |
+| REPEATABLE READ  | NO           | NO          | NO                  | YES           |
+| SERIALIZABLE     | NO           | NO          | NO                  | NO            |
+
+ * Checking current isolation level (MySQL):
+
+SESSION:
+SELECT @@SESSION.transaction_isolation;
+
+GLOBAL:
+SELECT @@GLOBAL.transaction_isolation;
+
+ * Changing isolation levels:
+
+ * Change SESSION isolation level (current connection only):
+SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+ * Change GLOBAL isolation level (new connections only):
+SET GLOBAL TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+ * Final required GLOBAL isolation level:
+
+SET GLOBAL TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+ * When to use SESSION isolation level:
+
+Use it when only one session needs a different isolation level, for testing, or for critical operations without affecting other users.
