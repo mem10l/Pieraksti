@@ -13,12 +13,13 @@ https://dev.mysql.com/doc/refman/8.4/en/sql-compound-statements.html
  * Isolation levels and concurrency problems:
 (YES = problem may occur, NO = problem is prevented)
 
-| Isolation Level  | Lost Updates | Dirty Reads | Non-Repeating Reads | Phantom Reads |
-| ---------------- | ------------ | ----------- | ------------------- | ------------- |
-| READ UNCOMMITTED | YES          | YES         | YES                 | YES           |
-| READ COMMITTED   | YES          | NO          | YES                 | YES           |
-| REPEATABLE READ  | NO           | NO          | NO                  | YES           |
-| SERIALIZABLE     | NO           | NO          | NO                  | NO            |
+| **Isolation Level**  | **Lost Updates** | **Dirty Reads** | **Non-Repeatable Reads** | **Phantom Reads** |
+| -------------------- | ---------------- | --------------- | ------------------------ | ----------------- |
+| **READ UNCOMMITTED** | Yes (possible)   | Yes             | Yes                      | Yes               |
+| **READ COMMITTED**   | Yes (possible)   | No              | Yes                      | Yes               |
+| **REPEATABLE READ**  | No (prevents)    | No              | No                       | Yes               |
+| **SERIALIZABLE**     | No               | No              | No                       | No                |
+
 
  * Checking current isolation level (MySQL):
 
